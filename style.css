@@ -14,9 +14,9 @@ body, html {
     position: absolute;
     top: 0;
     left: 0;
-    
-    /* AJUSTE 1: Isso faz a câmera frontal agir como um espelho real na tela */
-    transform: scaleX(-1);
+    /* Removido qualquer efeito de espelhamento */
+    transform: none !important;
+}
     
     /* Garante nitidez visual no navegador */
     image-rendering: -webkit-optimize-contrast;
