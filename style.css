@@ -15,7 +15,7 @@ body, html {
     top: 0;
     left: 0;
     /* AJUSTE: Isso faz a câmera frontal agir como um espelho real */
-    transform: scaleX(-1);
+    transform: scaleX(1);
 }
 
 #moldura {
@@ -40,24 +40,29 @@ body, html {
 
 button {
     background: rgba(255, 255, 255, 0.9);
-    border: 2px solid #ffd700;
+    border: 3px solid #ffd700; /* Borda dourada um pouco mais grossa */
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
+    width: 85px; /* Tamanho do círculo */
+    height: 85px; /* Tamanho do círculo */
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    padding: 0; /* Remove espaços internos que apertam o ícone */
+    overflow: hidden; /* Garante que nada saia do círculo */
 }
 
 .btn-principal {
-    width: 95px;
-    height: 95px;
+    width: 100px; /* Botão de foto um pouco maior que o de inverter */
+    height: 100px;
+    background: #fff;
 }
 
-/* Garante que os ícones fiquem visíveis */
+/* Aqui é onde a mágica acontece para o ícone ficar maior */
 button img {
-    width: 45px !important;
-    height: 45px !important;
+    width: 70%; /* Aumenta a imagem para ocupar 70% do círculo */
+    height: 70%;
+    object-fit: contain; /* Garante que o ícone não estique nem amasse */
     display: block !important;
 }
