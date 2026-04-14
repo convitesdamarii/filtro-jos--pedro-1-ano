@@ -1,18 +1,22 @@
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
-const captureBtn = document.getElementById('btn-capture');
-const switchBtn = document.getElementById('btn-switch');
+const moldura = document.getElementById('moldura');
 let currentStream;
 let useFrontCamera = true;
 
-// Inicia a câmera
 async function startCamera() {
     if (currentStream) {
         currentStream.getTracks().forEach(track => track.stop());
     }
+    
     const constraints = {
-        video: { facingMode: useFrontCamera ? "user" : "environment" }
+        video: { 
+            facingMode: useFrontCamera ? "user" : "environment",
+            width: { ideal: 1920 },
+            height: { ideal: 1080 }
+        }
     };
+
     try {
         currentStream = await navigator.mediaDevices.getUserMedia(constraints);
         video.srcObject = currentStream;
@@ -21,33 +25,39 @@ async function startCamera() {
     }
 }
 
-// Trocar câmera
-switchBtn.addEventListener('click', () => {
+document.getElementById('btn-inverter').addEventListener('click', () => {
     useFrontCamera = !useFrontCamera;
     startCamera();
 });
 
-// Capturar e Salvar
-captureBtn.addEventListener('click', () => {
+document.getElementById('btn-foto').addEventListener('click', () => {
     const ctx = canvas.getContext('2d');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+    canvas.width = 1080;
+    canvas.height = 1920;
 
-    // Desenha o vídeo
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    
-    // Desenha a moldura por cima
-    const imgMoldura = new Image();
-    imgMoldura.src = 'moldura.png';
-    imgMoldura.onload = () => {
-        ctx.drawImage(imgMoldura, 0, 0, canvas.width, canvas.height);
-        
-        // Converte para imagem e baixa
-        const link = document.createElement('a');
-        link.download = 'minha-foto.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-    };
+    const videoRatio = video.videoWidth / video.videoHeight;
+    const canvasRatio = canvas.width / canvas.height;
+    let sw, sh, sx, sy;
+
+    if (videoRatio > canvasRatio) {
+        sh = video.videoHeight;
+        sw = video.videoHeight * canvasRatio;
+        sx = (video.videoWidth - sw) / 2;
+        sy = 0;
+    } else {
+        sw = video.videoWidth;
+        sh = video.videoWidth / canvasRatio;
+        sx = 0;
+        sy = (video.videoHeight - sh) / 2;
+    }
+
+    ctx.drawImage(video, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(moldura, 0, 0, canvas.width, canvas.height);
+
+    const link = document.createElement('a');
+    link.download = 'foto-jose-pedro.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
 });
 
 startCamera();

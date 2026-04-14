@@ -3,22 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Filtro Temático</title>
+    <title>Filtro José Pedro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="container">
-        <video id="video" autoplay playsinline></video>
-        
-        <img src="moldura.png" id="moldura" alt="Moldura">
+    <video id="video" autoplay playsinline></video>
+    <img src="moldura.png" id="moldura">
 
-        <div class="controls">
-            <button id="btn-switch"><img src="trocar.png" width="40"></button>
-            <button id="btn-capture"><img src="camera.png" width="60"></button>
-        </div>
-        
-        <canvas id="canvas" style="display:none;"></canvas>
+    <div class="controles">
+        <button id="btn-inverter"><img src="trocar.png"></button>
+        <button id="btn-foto" class="btn-principal"><img src="camera.png"></button>
     </div>
+
+    <canvas id="canvas" style="display:none;"></canvas>
     <script src="script.js"></script>
 </body>
 </html>
