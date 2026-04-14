@@ -14,8 +14,13 @@ body, html {
     position: absolute;
     top: 0;
     left: 0;
-    /* AJUSTE: Isso faz a câmera frontal agir como um espelho real */
-    transform: scaleX(1);
+    
+    /* AJUSTE 1: Isso faz a câmera frontal agir como um espelho real na tela */
+    transform: scaleX(-1);
+    
+    /* Garante nitidez visual no navegador */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
 #moldura {
@@ -38,31 +43,30 @@ body, html {
     z-index: 20;
 }
 
+/* AJUSTE 2: UNIFICAÇÃO DO ESTILO DOS BOTÕES (Preenchidos e redondos) */
 button {
-    background: rgba(255, 255, 255, 0.9);
-    border: 3px solid #ffd700; /* Borda dourada um pouco mais grossa */
-    border-radius: 50%;
-    width: 85px; /* Tamanho do círculo */
-    height: 85px; /* Tamanho do círculo */
+    background: #fff; /* Fundo branco totalmente preenchido */
+    border: 3px solid #ffd700; /* Borda dourada grossa */
+    border-radius: 50%; /* Círculo perfeito */
+    width: 85px;  /* Tamanho igual para ambos */
+    height: 85px; /* Tamanho igual para ambos */
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     cursor: pointer;
-    padding: 0; /* Remove espaços internos que apertam o ícone */
-    overflow: hidden; /* Garante que nada saia do círculo */
+    padding: 0;   /* Remove espaços internos */
 }
 
 .btn-principal {
-    width: 100px; /* Botão de foto um pouco maior que o de inverter */
+    width: 100px;  /* Botão de foto um pouco maior que o de inverter */
     height: 100px;
-    background: #fff;
 }
 
-/* Aqui é onde a mágica acontece para o ícone ficar maior */
+/* Garante que as imagens (ícones) fiquem grandes e centralizadas */
 button img {
-    width: 70%; /* Aumenta a imagem para ocupar 70% do círculo */
+    width: 70%;
     height: 70%;
-    object-fit: contain; /* Garante que o ícone não estique nem amasse */
-    display: block !important;
+    object-fit: contain;
+    display: block;
 }
