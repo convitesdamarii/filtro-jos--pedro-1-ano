@@ -14,6 +14,8 @@ body, html {
     position: absolute;
     top: 0;
     left: 0;
+    /* AJUSTE: Isso faz a câmera frontal agir como um espelho real */
+    transform: scaleX(-1);
 }
 
 #moldura {
@@ -37,8 +39,8 @@ body, html {
 }
 
 button {
-    background: rgba(255, 255, 255, 0.85);
-    border: 2px solid #ffd700; /* Um toque dourado para as estrelas */
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #ffd700;
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -46,18 +48,16 @@ button {
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    cursor: pointer;
 }
 
 .btn-principal {
     width: 95px;
     height: 95px;
-    background: #fff;
-    border: 3px solid #ffd700;
 }
 
+/* Garante que os ícones fiquem visíveis */
 button img {
-    width: 45px;
-    height: 45px;
-    object-fit: contain;
+    width: 45px !important;
+    height: 45px !important;
+    display: block !important;
 }
